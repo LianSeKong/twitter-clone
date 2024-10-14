@@ -1,7 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser';
+
+// Router 
 import authRouter from "./routes/auth.routes.js"
+import userRouter from "./routes/user.routes.js"
+
+// DB ORM
 import connectMongoDB from './db/connectMongoDB.js';
 
 const app = express(); // 一次创建，终生使用
@@ -19,7 +24,7 @@ app.get('/', (request, response) => {
 })
 
 app.use("/api/auth" ,authRouter)
-
+app.use("/api/user", userRouter)
 
 const port = process.env.PORT || 9000
 

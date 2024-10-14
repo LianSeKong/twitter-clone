@@ -5,7 +5,7 @@ const protectRoute = async (request, response, next) => {
 
         try {
             const token = request.cookies.jwt;
-            console.info(token);
+
 
             if (!token) {
                 return response.status(401).json({

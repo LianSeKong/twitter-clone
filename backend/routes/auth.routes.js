@@ -17,5 +17,5 @@ router.post('/logout', (request, response) => {
     logout(request, response)
 })
 
-router.get('/me', protectRoute ,getMe)
+router.get('/me', protectRoute, getMe)
 export default router;
