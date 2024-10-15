@@ -49,7 +49,14 @@ const columns = {
     link: {
         type: String,
         default: ""
-    }
+    },
+    likedPosts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Post",
+            default: []
+        }
+    ]
 }
 
 const scheme = new mongoose.Schema(columns, {

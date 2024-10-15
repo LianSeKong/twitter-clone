@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import { v2 as cloudinary } from 'cloudinary';
 import Notification from "../models/notification.model.js";
+import { errorLogger } from '../lib/utils/logger.js';
 /**
  * @description 根据用户名称去获取数据
  * 
@@ -10,14 +11,13 @@ import Notification from "../models/notification.model.js";
  * 
  */
 export const getUserProfile = async (request, response) => {
-
     const { username } = request.params;
     const targetUser = await User.findOne({
         username
     }).select('-password')
     if (!targetUser) {
         return response.status(404).json({
-            error: "此用户不存在"
+            error: "User not found"
         })
     }
     return response.status(200).json(targetUser)
@@ -90,7 +90,7 @@ export const followUnfollowUser = async (request, response) => {
         }
 
     } catch (error) {
-        console.log("Error is followUnfollowUser controller", error.message);
+        errorLogger("Error is followUnfollowUser controller", error.message);
         response.status(500).json({
             error: "Internal Server Error"
         })
@@ -131,7 +131,7 @@ export const getSuggestedUsers = async (request, response) => {
 
 
     } catch (error) {
-        console.log("Error is followUnfollowUser controller", error.message);
+        errorLogger("Error is followUnfollowUser controller", error.message);
         response.status(500).json({
             error: "Internal Server Error"
         })
@@ -208,7 +208,7 @@ export const updateUser = async (request, response) => {
 
     }
     catch (error) {
-        console.log("Error is updateUser controller", error.message);
+        errorLogger("Error is updateUser controller", error.message);
         response.status(500).json({
             error: "Internal Server Error"
         })
