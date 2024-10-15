@@ -8,4 +8,6 @@ router.get('/profile/:username', protectRoute, getUserProfile)
 router.get('/suggested', protectRoute, getSuggestedUsers)
 router.post('/follow/:id', protectRoute, followUnfollowUser)
 
+
+
 export default router
